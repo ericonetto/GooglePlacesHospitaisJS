@@ -13,8 +13,10 @@ var pgp = require('pg-promise')(options);
 
 function getHospitals(req, res, next) {
   var location=[req.body.lat, req.body.lng];
+  var pagetoken=req.query.pagetoken;
 
-  hospitals.hospitalsSP(location).then(result => {
+
+  hospitals.hospitalsSP(location, pagetoken).then(result => {
       res.send(result)
     })
     .catch(err => {

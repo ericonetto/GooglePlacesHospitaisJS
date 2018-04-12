@@ -16,21 +16,23 @@ var request = require("request");
 function hospitalsSP(nearByLocation, next_page_token=null){
     
     return new Promise(function(resolve, reject) {
-        placesdf=[];
-
+        var placesdf=[];
+        var nextpagetoken=undefined;
         var result=null;
-        if(next_page_token==null){
+        if(next_page_token==null || next_page_token==undefined){
             googleMapsClient.placesNearby({keyword:'SP', location:nearByLocation,type:'hospital', rankby:'distance'}, next)
         }else{
             googleMapsClient.placesNearby({keyword:'SP', location:nearByLocation,type:'hospital', rankby:'distance', pagetoken:next_page_token},next); 
         }
     
+
         function next(err, result){
             if (result.json.results.length>0){
-                var placesdf=[];
+                placesdf=[];
                 var getPromices=[];
+                nextpagetoken=result.json.next_page_token;
                 result.json.results.forEach(function(place) {
-    
+                    //get details
                     var newpromice = new Promise(function(resolve, reject) {
                         var options = { 
                             method: 'GET',
@@ -57,16 +59,16 @@ function hospitalsSP(nearByLocation, next_page_token=null){
                         console.log(err.message);
                     });
     
-    
-    
-                    //now add thins promice to array
+                    //now add this promice to array
                     getPromices.push(newpromice);
                 });
     
     
                 var all =Promise.all(getPromices).then(result=>{
                     console.info("all details collected");
-                    resolve(placesdf);
+                    var result={results:placesdf,
+                    next_page_token:nextpagetoken};
+                    resolve(result);
                 }).catch(reason=>{
                     console.warn('Failed!', reason);
                     reject(null)
@@ -78,8 +80,6 @@ function hospitalsSP(nearByLocation, next_page_token=null){
         }
     })
 }
-
-
 
 
 

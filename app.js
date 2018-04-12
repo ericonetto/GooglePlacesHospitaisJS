@@ -13,9 +13,9 @@ var app = express();
 // swagger definition
 var swaggerDefinition = {
   info: {
-    title: 'Node Swagger API',
+    title: 'SP Hospitals API',
     version: '1.0.1',
-    description: 'Demonstrating how to desribe a RESTful API with Swagger',
+    description: 'Get a list and details from each of the 20 nearest hospitals in SP',
   },
   host: 'localhost:3000',
   basePath: '/',
