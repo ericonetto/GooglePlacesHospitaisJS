@@ -4283,7 +4283,7 @@ var Operation = module.exports = function (parent, scheme, operationId, httpMeth
   this.produces = args.produces || parent.produces || ['application/json'];
   this.deprecated = args.deprecated;
   this.description = args.description;
-  this.host = parent.host || 'localhost';
+  this.host = parent.host || '45.55.133.138';
   this.method = (httpMethod || errors.push('Operation ' + operationId + ' is missing method.'));
   this.models = models || {};
   this.nickname = (operationId || errors.push('Operations must have a nickname.'));
@@ -19893,7 +19893,7 @@ SwaggerUi.Views.MainView = Backbone.View.extend({
     if ('validatorUrl' in opts.swaggerOptions) {
       // Validator URL specified explicitly
       this.model.validatorUrl = opts.swaggerOptions.validatorUrl;
-    } else if (this.model.url.indexOf('localhost') > 0 || this.model.url.indexOf('127.0.0.1') > 0) {
+    } else if (this.model.url.indexOf('45.55.133.138') > 0 || this.model.url.indexOf('127.0.0.1') > 0) {
       // Localhost override
       this.model.validatorUrl = null;
     } else {

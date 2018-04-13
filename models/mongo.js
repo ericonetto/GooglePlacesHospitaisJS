@@ -1,5 +1,5 @@
 var mongoose    =   require("mongoose");
-mongoose.connect('mongodb://localhost:27017/mcinterface');
+mongoose.connect('mongodb://45.55.133.138:27017/mcinterface');
 // create instance of Schema
 var mongoSchema =   mongoose.Schema;
 // create schema

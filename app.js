@@ -19,7 +19,7 @@ var swaggerDefinition = {
     version: '1.0.1',
     description: 'Get a list and details from each of the 20 nearest hospitals in SP',
   },
-  host: 'localhost:3000',
+  host: '45.55.133.138:3000',
   basePath: '/',
 };
 
